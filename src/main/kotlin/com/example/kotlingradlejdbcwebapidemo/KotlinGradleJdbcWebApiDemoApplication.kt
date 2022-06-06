@@ -7,5 +7,5 @@ import org.springframework.boot.runApplication
 class KotlinGradleJdbcWebApiDemoApplication
 
 fun main(args: Array<String>) {
-	runApplication<KotlinGradleJdbcWebApiDemoApplication>(*args)
+    runApplication<KotlinGradleJdbcWebApiDemoApplication>(*args)
 }
