@@ -23,4 +23,10 @@ class CustomerServiceImpl(val customerRepository: CustomerRepository) : Customer
         customerRepository.update(id, firstName, lastName)
         return
     }
+
+    @Transactional
+    override fun deleteCustomer(id: Int) {
+        customerRepository.delete(id)
+        return
+    }
 }

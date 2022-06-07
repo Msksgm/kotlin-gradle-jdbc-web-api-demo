@@ -6,4 +6,5 @@ interface CustomerService {
     fun insertCustomer(firstName: String, lastName: String)
     fun selectCustomer(): List<Customer>
     fun updateCustomer(id: Int, firstName: String, lastName: String)
+    fun deleteCustomer(id: Int)
 }

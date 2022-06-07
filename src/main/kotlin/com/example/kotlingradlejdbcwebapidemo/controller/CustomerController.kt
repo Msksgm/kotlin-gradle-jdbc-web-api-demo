@@ -1,6 +1,7 @@
 package com.example.kotlingradlejdbcwebapidemo.controller
 
 import com.example.kotlingradlejdbcwebapidemo.service.CustomerService
+import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
@@ -29,6 +30,16 @@ class CustomerController(val customerService: CustomerService) {
     @PutMapping("/customers/{id}")
     fun update(@PathVariable("id") id: Int, @RequestBody request: UpdateCustomerRequest): String {
         customerService.updateCustomer(id, request.firstName, request.lastName)
+        return """
+            {
+                "message": "success"
+            }
+        """.trimIndent()
+    }
+
+    @DeleteMapping("/customers/{id}")
+    fun delete(@PathVariable("id") id: Int) : String {
+        customerService.deleteCustomer(id)
         return """
             {
                 "message": "success"

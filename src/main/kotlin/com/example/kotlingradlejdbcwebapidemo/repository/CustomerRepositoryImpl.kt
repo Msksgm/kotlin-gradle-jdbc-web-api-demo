@@ -31,4 +31,10 @@ class CustomerRepositoryImpl(val jdbcTemplate: JdbcTemplate) : CustomerRepositor
         jdbcTemplate.update(sql, firstName, lastName, id)
         return
     }
+
+    override fun delete(id: Int) {
+        val sql = "DELETE FROM customer WHERE id = ?"
+        jdbcTemplate.update(sql, id)
+        return
+    }
 }
