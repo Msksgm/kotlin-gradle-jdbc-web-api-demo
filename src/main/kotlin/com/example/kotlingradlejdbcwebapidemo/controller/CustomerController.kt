@@ -2,7 +2,9 @@ package com.example.kotlingradlejdbcwebapidemo.controller
 
 import com.example.kotlingradlejdbcwebapidemo.service.CustomerService
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
 
@@ -22,5 +24,15 @@ class CustomerController(val customerService: CustomerService) {
     @GetMapping("/customers")
     fun read(): CustomerResponse {
         return CustomerResponse(customers = customerService.selectCustomer())
+    }
+
+    @PutMapping("/customers/{id}")
+    fun update(@PathVariable("id") id: Int, @RequestBody request: UpdateCustomerRequest): String {
+        customerService.updateCustomer(id, request.firstName, request.lastName)
+        return """
+            {
+                "message": "success"
+            }
+        """.trimIndent()
     }
 }

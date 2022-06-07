@@ -17,4 +17,18 @@ class CustomerRepositoryImpl(val jdbcTemplate: JdbcTemplate) : CustomerRepositor
         val mapper = CustomerRowMapper()
         return jdbcTemplate.queryForStream(sql, mapper).toList()
     }
+
+    override fun update(id: Int, firstName: String, lastName: String) {
+        val sql = """
+            UPDATE
+                customer
+            SET
+                first_name = ?
+                , last_name = ?
+            WHERE
+                id = ?
+        """.trimIndent()
+        jdbcTemplate.update(sql, firstName, lastName, id)
+        return
+    }
 }
