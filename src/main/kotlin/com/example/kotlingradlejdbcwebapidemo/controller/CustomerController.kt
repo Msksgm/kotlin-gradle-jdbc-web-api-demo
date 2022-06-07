@@ -1,6 +1,7 @@
 package com.example.kotlingradlejdbcwebapidemo.controller
 
 import com.example.kotlingradlejdbcwebapidemo.service.CustomerService
+import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
@@ -16,5 +17,10 @@ class CustomerController(val customerService: CustomerService) {
                 "message": "success"
             }
         """.trimIndent()
+    }
+
+    @GetMapping("/customers")
+    fun read(): CustomerResponse {
+        return CustomerResponse(customers = customerService.selectCustomer())
     }
 }
